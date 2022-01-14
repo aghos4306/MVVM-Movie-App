@@ -6,7 +6,6 @@ import com.example.mvvmretrofitrecyclerview.model.MovieModel
 import com.example.mvvmretrofitrecyclerview.repository.MainRepository
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 class MainViewModel constructor(val repository: MainRepository) : ViewModel() {
 
@@ -16,7 +15,7 @@ class MainViewModel constructor(val repository: MainRepository) : ViewModel() {
     fun getAllMovies() {
 
         val response = repository.getAllMovies()
-        response.enqueue(object : Callback<List<MovieModel>> {
+        response.enqueue(object : retrofit2.Callback<List<MovieModel>> {
             override fun onResponse(call: Call<List<MovieModel>>, response: Response<List<MovieModel>>) {
                 movieList.postValue(response.body())
             }
